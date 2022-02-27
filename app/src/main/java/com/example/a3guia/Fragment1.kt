@@ -21,16 +21,11 @@ class Fragment1 : Fragment() {
             val horas = R.id.Ed_horas
             val editText1 : EditText = view.findViewById(horas)
             val editText2 : EditText = view.findViewById(R.id.Ed_nombre)
-
-            val input1 = editText1.text.toString()
-            val salario = horas*8.50-((horas*8.50*0.02)+(horas*8.50*0.03)+(horas*8.50*0.04))
+            val input1 = editText1.text.toString().toDouble()
+            val salario = input1*8.50-((input1*8.50*0.02)+(input1*8.50*0.03)+(input1*8.50*0.04))
             val input2 = editText2.text.toString()
             val total = editText1.toString()
-            val bundle = Bundle()
-            bundle.putString("salario",input1)
-            bundle.putString("nombre",input2)
-            val fragment = Fragment2()
-            fragment.arguments = bundle
+            val fragment = Fragment2(salario,input2)
             fragmentManager?.beginTransaction()?.replace(R.id.nav_container,fragment)?.commit()
         }
         return view
